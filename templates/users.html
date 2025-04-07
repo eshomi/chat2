@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #121212);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(30, 30, 47, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-out;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #00e6e6;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        a {
+            color: #00e6e6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00e6e6; }
+            to { text-shadow: 0 0 20px #00e6e6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ПОЛЬЗОВАТЕЛИ</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="userTable"></tbody>
+        </table>
+        <p><a href="chat.html">На родину</a></p>
+    </div>
+    <script>
+        const users = [
+            { username: 'User1', email: 'user1@example.com' },
+            { username: 'User2', email: 'user2@example.com' },
+            { username: 'User3', email: 'user3@example.com' }
+        ];
+
+        const userTable = document.getElementById('userTable');
+
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${user.username}</td><td>${user.email}</td>`;
+            userTable.appendChild(row);
+        });
+    </script>
+</body>
+</html>

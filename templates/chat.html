@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чат</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #121212);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: rgba(30, 30, 47, 0.9);
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .navbar a {
+            color: #00e6e6;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: rgba(0, 230, 230, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 230, 230, 0.4);
+        }
+
+        .input-container {
+            display: flex;
+            padding: 10px;
+            background-color: rgba(30, 30, 47, 0.9);
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .input-container input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            margin-right: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .input-container input:focus {
+            outline: none;
+            border: 2px solid #00e6e6;
+            box-shadow: 0 0 10px #00e6e6;
+        }
+
+        .input-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #00e6e6, #0077b6);
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .input-container button:hover {
+            background: linear-gradient(135deg, #0077b6, #00e6e6);
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 230, 230, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="rules.html">ПРАВИЛА</a>
+        <a href="users.html">ПОЛЬЗОВАТЕЛИ</a>
+        <a href="forum.html">ФОРУМ</a>
+    </div>
+    <div class="chat-container" id="chatContainer">
+        <!-- Messages will appear here -->
+    </div>
+    <div class="input-container">
+        <input type="text" id="messageInput" placeholder="Сообщение...">
+        <button id="sendButton">Отправить</button>
+    </div>
+    <script>
+        const chatContainer = document.getElementById('chatContainer');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+
+            if (message) {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message user';
+                messageElement.textContent = message;
+                chatContainer.appendChild(messageElement);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                messageInput.value = '';
+            }
+        }
+
+        // Example: Simulate receiving a message
+        setTimeout(() => {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message';
+            messageElement.textContent = 'Добро пожаловать в чат. Пожалуйста, соблюдайте правила.';
+            chatContainer.appendChild(messageElement);
+        }, 1000);
+    </script>
+</body>
+</html>
